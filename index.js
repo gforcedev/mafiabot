@@ -15,14 +15,11 @@ client.on('message', async message => {
 	if (command === 'mafia') {
 		let mentionedUsers = [];
 		for (const mentionText of message.content.match(mentionRegexpGlobal)) {
-			console.log(mentionText);
 			mentionedUsers.push(client.users.get(mentionText.match(mentionRegexp)[1])); // The id (using the group)
 		}
-		console.log(mentionedUsers);
 
 		const chosenMafia = mentionedUsers[Math.floor(Math.random() * mentionedUsers.length)];
 		for (let user of mentionedUsers) {
-			console.log(`sending message to ${user.username} (id ${user.id})`);
 			if (user.id === chosenMafia.id) {
 				user.send(`${user.username}, you are the MAFIA for this round (game created by ${message.author.username})`).catch(() => {});
 				break;
