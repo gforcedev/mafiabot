@@ -21,10 +21,8 @@ client.on('message', async message => {
 		const chosenMafia = mentionedUsers[Math.floor(Math.random() * mentionedUsers.length)];
 		for (let user of mentionedUsers) {
 			if (user.id === chosenMafia.id) {
-				user.send(`${user.username}, you are the MAFIA for this round (game created by ${message.author.username})`).catch(() => {});
+				user.send(`${user.username}, you are the MAFIA for this round (game created by ${message.author.username})`).catch(() => {message.channel.send('Ah shoot. I probably got ratelimited or something')});
 				break;
-			} else {
-				user.send(`${user.username}, you are a VILLAGER for this round (game created by ${message.author.username})`).catch(() => {});
 			}
 		}
 	}
