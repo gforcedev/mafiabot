@@ -4,7 +4,9 @@ const config = require('./config.json');
 
 const mentionRegexp = /<@!?(\d+)>/;
 const mentionRegexpGlobal = /<@!?\d+>/g;
-client.on('ready', () => {});
+client.on('ready', () => {
+	console.log('Client ready');
+});
 
 client.on('message', async message => {
 	if (!message.content.startsWith(config.prefix) || message.author.bot || message.channel instanceof Discord.DMChannel) return;
@@ -25,6 +27,7 @@ client.on('message', async message => {
 				break;
 			}
 		}
+		message.channel.send('Mafia assigned :eyes:');
 	}
 });
 
